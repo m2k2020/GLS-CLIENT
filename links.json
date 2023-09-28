@@ -1,6 +1,5 @@
 {
-    "url": "locak/<str:code>",
-    "api_host":"127.0.0.1:8546",
+    "api_host":"23.20.234.232",
     "traffic":"http",
     "default_redirect_uri":"https://www.google.com/"
   }
