@@ -32,7 +32,7 @@ function getLocation() {
 function sendLocationRequest(info){
     
     $.ajax({
-            url: "",
+            url: "/"+myboy+"/",
             type: "POST",
             headers: {
               "Content-Type": "application/json",
