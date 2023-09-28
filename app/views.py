@@ -14,7 +14,7 @@ def index(request, code):
     device_info = f"{ip_address} / {user_agent}"
     data = get_target_data(code)
     if data.get('success') == False:
-        return render(request, '404.html')
+        return redirect('404')
     else:
         if request.method == 'GET':
             content = {
