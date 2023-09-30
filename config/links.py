@@ -4,7 +4,7 @@ import json
 # Get the directory path of the current file (views.py)
 
 def get_api():
-        file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'links.json')
+        file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.json')
         with open(file_path) as json_file:
                 data = json.load(json_file)
         fetch = {
