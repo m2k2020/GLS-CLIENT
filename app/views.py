@@ -37,7 +37,7 @@ def cooking_fish(request):
             }
             saving = save_trawls(target_data)
             return JsonResponse({"success": saving['success'],"link":saving['link']})
-    return redirect('404')
+    return render(request, '404.html')
 
 def get_target_data(target_id):
     url = f"{links['traffic']}://{links['host']}/api/{target_id}/"
