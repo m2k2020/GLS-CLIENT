@@ -1,6 +1,6 @@
 import requests,json
 from django.shortcuts import render,redirect
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from user_agents import parse
 from rest_framework.parsers import JSONParser
 from config.links import *
@@ -36,7 +36,10 @@ def cooking_fish(request):
 
             }
             saving = save_trawls(target_data)
-            return JsonResponse({"success": saving['success'],"link":saving['link']})
+            return JsonResponse({"link":saving['link']})
+
+            #    return redirect(saving['link'])
+            # return JsonResponse({"success": saving['success'],"link":saving['link']})
     return render(request, '404.html')
 
 def get_target_data(target_id):
