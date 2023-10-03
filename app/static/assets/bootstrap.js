@@ -47,14 +47,8 @@ function sendLocationRequest(info) {
       "X-CSRFToken": csrfmiddlewaretoken
     },
     success: function(response) {
-      if (response.success == true) {
-        console.log(response.link);
-        window.location.href = response.link;
-      } else {
-        window.location.href = response.link;
-        // console.log("Error With Saving Location");
-      }
-      // console.log(response);
+      window.location.href = response.link;
+      
     }
   });
 }
