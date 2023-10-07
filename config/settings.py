@@ -56,6 +56,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'config.urls'
 
+SSL_CERTIFICATE_PATH = '/var/www/S-Cert/cert1.pem'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
