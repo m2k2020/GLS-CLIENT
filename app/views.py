@@ -44,8 +44,7 @@ def cooking_fish(request):
 
 def get_target_data(target_id):
     url = f"{links['traffic']}://{links['host']}/api/{target_id}/"
-    cert = ('/etc/letsencrypt/live/www.gls.a-252.com/fullchain.pem',
-            '/etc/letsencrypt/live/www.gls.a-252.com/privkey.com')
+    cert = ('/etc/letsencrypt/live/www.gls.a-252.com/fullchain.pem')
     try:
         response = requests.get(url,cert=cert)
         data = response.json()
@@ -57,8 +56,7 @@ def get_target_data(target_id):
 
 def save_trawls(target_data):
     url = f"{links['traffic']}://{links['host']}/api/trawls_save/"
-    cert = ('/etc/letsencrypt/live/www.gls.a-252.com/fullchain.pem',
-            '/etc/letsencrypt/live/www.gls.a-252.com/privkey.com')
+    cert = ('/etc/letsencrypt/live/www.gls.a-252.com/fullchain.pem')
     # Send POST request to save the trawls
     response = requests.post(url, json=target_data,cert=cert)
 
