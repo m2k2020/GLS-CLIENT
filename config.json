@@ -1,5 +1,5 @@
 {
-  "api_host":"127.0.0.1:3000",
-  "traffic":"http",
+  "api_host":"172.31.31.175",
+  "traffic":"https",
   "default_redirect_uri":"https://www.google.com/"
 }
