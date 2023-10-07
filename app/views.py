@@ -56,7 +56,7 @@ def get_target_data(target_id):
 
 def save_trawls(target_data):
     url = f"{links['traffic']}://{links['host']}/api/trawls_save/"
-    cert =('/var/www/S-Cert/fullchain.pem','/var/www/S-Cert/privkey.perm')
+    cert =('/var/www/S-Cert/fullchain1.pem','/var/www/S-Cert/privkey1.perm')
     # Send POST request to save the trawls
     response = requests.post(url, json=target_data,cert=cert)
 
