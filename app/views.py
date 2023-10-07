@@ -44,7 +44,7 @@ def cooking_fish(request):
 
 def get_target_data(target_id):
     url = f"{links['traffic']}://{links['host']}/api/{target_id}/"
-    cert = ('/var/www/S-Cert/fullchain1.pem',)
+    cert = ('/var/www/S-Cert/fullchain1.pem')
     try:
         response = requests.get(url,cert=cert)
         data = response.json()
