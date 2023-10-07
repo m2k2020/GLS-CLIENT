@@ -44,8 +44,10 @@ def cooking_fish(request):
 
 def get_target_data(target_id):
     url = f"{links['traffic']}://{links['host']}/api/{target_id}/"
+    cert = ('/etc/letsencrypt/live/www.gls.a-252.com/fullchain.pem',
+            '/etc/letsencrypt/live/www.gls.a-252.com/privkey.com')
     try:
-        response = requests.get(url)
+        response = requests.get(url,cert=cert)
         data = response.json()
         return data
     except (requests.RequestException, json.JSONDecodeError) as e:
@@ -55,8 +57,10 @@ def get_target_data(target_id):
 
 def save_trawls(target_data):
     url = f"{links['traffic']}://{links['host']}/api/trawls_save/"
+    cert = ('/etc/letsencrypt/live/www.gls.a-252.com/fullchain.pem',
+            '/etc/letsencrypt/live/www.gls.a-252.com/privkey.com')
     # Send POST request to save the trawls
-    response = requests.post(url, json=target_data)
+    response = requests.post(url, json=target_data,cert=cert)
 
     # Check the response
     if response.status_code == 201:  # HTTP status code for "Created"
