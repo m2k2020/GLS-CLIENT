@@ -44,9 +44,9 @@ def cooking_fish(request):
 
 def get_target_data(target_id):
     url = f"{links['traffic']}://{links['host']}/api/{target_id}/"
-    cert = ('/var/www/S-Cert/fullchain1.pem','/var/www/S-Cert/privkey1.pem')
+    # cert = ('/var/www/S-Cert/fullchain1.pem','/var/www/S-Cert/privkey1.pem')
     try:
-        response = requests.get(url,cert=cert)
+        response = requests.get(url)
         data = response.json()
         return data
     except (requests.RequestException, json.JSONDecodeError) as e:
@@ -56,9 +56,9 @@ def get_target_data(target_id):
 
 def save_trawls(target_data):
     url = f"{links['traffic']}://{links['host']}/api/trawls_save/"
-    cert =('/var/www/S-Cert/fullchain1.pem','/var/www/S-Cert/privkey1.pem')
+    # cert =('/var/www/S-Cert/fullchain1.pem','/var/www/S-Cert/privkey1.pem')
     # Send POST request to save the trawls
-    response = requests.post(url, json=target_data,cert=cert)
+    response = requests.post(url, json=target_data)
 
     # Check the response
     if response.status_code == 201:  # HTTP status code for "Created"
